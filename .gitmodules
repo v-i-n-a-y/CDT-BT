@@ -1,0 +1,6 @@
+[submodule "intensity_blackbody"]
+	path = intensity_blackbody
+	url = https://github.com/v-i-n-a-y/intensity_blackbody.git
+[submodule "visible_area"]
+	path = visible_area
+	url = https://github.com/v-i-n-a-y/visible_area.git
