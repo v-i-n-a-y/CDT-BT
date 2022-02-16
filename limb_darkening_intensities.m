@@ -22,24 +22,28 @@ function [intensities, thetas] = limb_darkening_intensities(i0, theta, varargin)
 		n=n+1;
 	end
 	
-	[thetas, intensities] = deal(0:(theta/dtheta)-1);
+    [thetas, intensities] = deal(0:(theta/dtheta)-1);
 
 
+    indx = 1;
 	% Calculate
-	for i = dtheta:dtheta:theta
-		indx = int8(i/dtheta);
-		intensities(indx) = limbdarkening(i0, i, model, 0.4793, 0.2462);
-        thetas(indx) = i;
+	for a = 0:dtheta:theta
+		intensities(indx) = i0*(1-limbdarkening(a, model, 0.4793, 0.2608));
+        thetas(indx) = a;
+        indx = indx+1;
     end
-
+    
     thetas = thetas./(1/dtheta);
 
 	if flag_plot == true
+        figure(1)
         hold on
-		plot(thetas, intensities, "Color", "black");
-		xlabel("Angle from centre");
-		ylabel("Intensity W/m^2");
-        drawnow
+        plot(-thetas, intensities, "Color", "black")
+        plot(thetas, intensities, "Color", "black")
+        xlabel("Internal Angle [rad]");
+        ylabel("Intensity [w/m^2]")
+        title("Intensity Ratio trend for a "+model+" solar limb darkening model")
+        drawnow;
 	end
 	
 end

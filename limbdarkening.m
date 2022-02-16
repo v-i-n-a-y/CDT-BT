@@ -11,7 +11,7 @@
 %
 %
 
-function i = limbdarkening(i0, theta, varargin)
+function ratio = limbdarkening(theta, varargin)
 
 	% Process arguments
 	n=1;
@@ -22,19 +22,39 @@ function i = limbdarkening(i0, theta, varargin)
 			case "linear"
 				% Get coefficients
 				n=n+1;
-				u = varargin{n};
+				c = varargin{n};
 
 				% Calculate intensity
-				i = i0*((1-u)*(1-cos(theta)));
+				ratio = ((1-c)*(1-cos(theta)));
 
 			case "quadratic"
-                n=n+1; 
-                u = varargin{n};
-                n=n+1;
-                v = varargin{n};
+                		n=n+1; 
+               			c1 = varargin{n};
+                		n=n+1;
+                		c2 = varargin{n};
 
-                i = i0*((1-u)* (1-cos(theta)) * (v - sin(theta).^2));
+                		ratio = (1-c1)*(1-cos(theta))-c2*(1-cos(theta))^2;
+			case "square root"
+				n=n+1;
+				c1 = varargin{n};
+				n=n+1;
+				c2 = varargin{n};
+
+				ratio = (1-c1)*(1-cos(theta))-c2*(1-cos(theta));
 			case "logarithm"
+				n=n+1; 
+				c1 = varargin{n};
+				n=n+1; 
+				c2 = varargin{n};
+
+				ratio = (1-c1)*(1-cos(theta))-c2*cos(theta)*log(cos(theta));
+			case "exponential"
+				n=n+1;
+				c1 = varargin{n};
+				n=n+1;
+				c2 = varargin{n};
+
+				ratio = (1-c1)*(1-cos(theta))-(c2/(1-exp(cos(theta))));
 		end
 		n=n+1;
 	end
