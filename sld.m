@@ -25,6 +25,7 @@ function sld(varargin)
 	% Add the submodule repos
 	addpath("./visible_area");
 	addpath("./intensity_blackbody");
+	addpath("./functions");
 
 	% Process arguments
 	n=1;
@@ -54,7 +55,7 @@ function sld(varargin)
     % Plotting
 	figure(1);
     end
-
+    
 	% Calculation loop
     for h = ds:ds:dist
         
