@@ -62,9 +62,9 @@ function  plot_sun(varargin)
     shading('interp');
 
     % Decorate plot
-    title(plot_title);
-    subtitle(plot_subtitle)
-    view(0, 90);
-    xlim([-lim, lim])
+    title(ax, plot_title);
+    subtitle(ax, plot_subtitle)
+    view(ax, 0, 90);
+    xlim(ax, [-lim, lim])
     axis equal
 end

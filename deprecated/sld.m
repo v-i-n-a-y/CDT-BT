@@ -18,7 +18,7 @@ function sld(varargin)
 	dist = 147.72e6;	% Simulation distance
 	unit = 147.72e6;	% Unit to use [Default = Au]
 	unit_name = "Au";	% Name of the units
-	ds = 1e7; 		    % Simulation interval [Default = 100km]
+	ds = 1e5; 		    % Simulation interval [Default = 100km]
 	dr = 1;			    % Limb darkening interval [Default = 1km]
 	sun_radius = 696340;% Radius of the radiating body [Default = Solar Radius]
 	flag_plot = true;
@@ -54,6 +54,8 @@ function sld(varargin)
     if flag_plot == true
     % Plotting
 	figure(1);
+
+
     end
     
 	% Calculation loop
@@ -99,8 +101,9 @@ function sld(varargin)
             cm = brighten(customcolormap(angles, clrs), ((intensity(indx)/intensity(1))*(mx-mi))-mi );
     
             % Plot sun
-            clf;
-            ax = axes();
+            clf
+            ax = subplot(2,1,1);
+            
             sub = {"Radius of Visible Disc: "+ radius(indx)+"km", ...
                    " Intensity at Centre: "+ intensity(indx)+"W/m^2", ...
                    " Intensity at Limb: "+ ldr1+"W/m^2"};
@@ -109,7 +112,7 @@ function sld(varargin)
 	        plot_sun("colormap", cm, "subtitle", sub, "axes", ax, "title", tit, "radius", radius(indx));
             drawnow;
 
-            f = sum(ldr2)/3e8
+            f = sum(ldr2)/3e8;
             a = (acos(radius(indx)/distance(indx)));
             force(indx) = (distance(indx))^2 / (2*pi*f*sin(a));
             
