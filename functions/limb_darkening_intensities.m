@@ -1,9 +1,10 @@
 
 
 function [intensities, thetas] = limb_darkening_intensities(i0, theta, varargin)
-	dtheta = 1e-5; % Interval to iterate angle
-	model = "linear";
-	flag_plot = false;
+
+	dtheta      = 1e-5; % Interval to iterate angle
+	model       = "linear";
+	flag_plot   = false;
 
 	% Process arguments
 	n = 1;
@@ -22,7 +23,7 @@ function [intensities, thetas] = limb_darkening_intensities(i0, theta, varargin)
 		n=n+1;
 	end
 	
-    [thetas, intensities] = deal(0:(theta/dtheta)-1);
+    [thetas, intensities] = deal(0.0001:(theta/dtheta)-1);
 
 
     indx = 1;
