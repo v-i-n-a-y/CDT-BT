@@ -1,2 +1,1 @@
-# sld
-Solar Limb Darkening
+# CDT-RP : Comet Dust Tail Radiation Pressure
